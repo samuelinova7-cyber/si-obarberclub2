@@ -256,6 +256,14 @@ export function SiaoMiniGame() {
                 >
                   <RotateCcw size={16} /> Jogar Novamente
                 </button>
+                <a
+                  href="https://siaolego.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl font-black text-xs tracking-widest uppercase px-8 py-4 rounded-xl transition-all flex items-center gap-2"
+                >
+                  Acessar Site Original (siaolego)
+                </a>
               </div>
             </div>
           )}
