@@ -20,7 +20,15 @@ import {
   Wifi,
   Sparkles,
   Gamepad2,
-  ThumbsUp
+  ThumbsUp,
+  Tv,
+  MonitorPlay,
+  Maximize2,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Users
 } from 'lucide-react';
 import { CareerForm } from './components/CareerForm';
 import { SiaoMiniGame } from './components/SiaoMiniGame';
@@ -30,6 +38,7 @@ import { FloatingParticles } from './components/FloatingParticles';
 const LOGO_IMAGE = "https://res.cloudinary.com/dbuiqh0ee/image/upload/v1780446381/WhatsApp_Image_2026-01-11_at_10.55.31_AM_1_slz0il.jpg";
 const HERO_BG_VIDEO = "https://res.cloudinary.com/dbuiqh0ee/video/upload/v1780446389/Create_a_twoframe_1080p_202601111008_hzhom0.mp4";
 const ACADEMY_VIDEO = "https://res.cloudinary.com/dbuiqh0ee/video/upload/v1780446379/SnapInsta.to_AQMPXPvh17YFW61JJDTj11oUoJxkl36RAms6egC1XDIv0Zfg084CnNCwiJLY4RoWOBswmz4zS08263HuxudhfIve0geRTkVitHjG9m4_pavls4.mp4";
+const PROPOSAL_TV_VIDEO = "https://res.cloudinary.com/ddfacd0wf/video/upload/v1790550274/WhatsApp_Video_2026-05-26_at_5.43.37_PM_jiipmq.mp4";
 
 const PRODUCT_IMAGES = [
   "https://res.cloudinary.com/dbuiqh0ee/image/upload/v1780446359/Captura_de_tela_2026-02-17_173735_xhlgif.png",
@@ -49,7 +58,7 @@ const GALLERY_IMAGES = [
   "https://res.cloudinary.com/dbuiqh0ee/image/upload/v1780446362/Captura_de_tela_2026-03-28_103929_dkkdyj.png",
   "https://res.cloudinary.com/dbuiqh0ee/image/upload/v1780446364/Captura_de_tela_2026-04-08_141015_nnwqsz.png",
   "https://res.cloudinary.com/dbuiqh0ee/image/upload/v1780446365/Captura_de_tela_2026-04-08_141031_szy0u3.png"
-];
+].filter(Boolean);
 
 const UNIT_CARAVELAS = "https://res.cloudinary.com/dbuiqh0ee/image/upload/v1780446370/Captura_de_tela_2026-04-08_144326_n42owu.png";
 const UNIT_MANGUABA = "https://res.cloudinary.com/dbuiqh0ee/image/upload/v1780446371/Captura_de_tela_2026-04-08_144419_sqf7nm.png";
@@ -79,10 +88,52 @@ const SERVICES = {
 };
 
 const PLANS = [
-  { name: "PLANO DE CORTE ILIMITADO", price: "59,99", icon: <Scissors size={16} />, features: ["CORTE DE CABELO ILIMITADO", "10% DE DESCONTO EM PRODUTOS E SERVIÇOS", "LAVAGEM INCLUSA"] },
-  { name: "PLANO DE CORTE E BARBOTERAPIA", price: "129,99", icon: <Star size={16} />, promo: "DIRETO PARA", features: ["CORTES E BARBAS ILIMITADOS", "10% DE DESCONTO EM PRODUTOS E SERVIÇOS", "MASSAGEM FACIAL INCLUSA"], popular: true },
-  { name: "PLANO DE CORTE E BARBA SIMPLES", price: "110,99", icon: <X size={16} />, features: ["CORTES ILIMITADOS", "BARBA SIMPLES ILIMITADA", "10% DE DESCONTO EM PRODUTOS E SERVIÇOS"] },
-  { name: "PLANO DE BARBA ILIMITADO", price: "63,00", icon: <MessageCircle size={16} />, features: ["BARBA SIMPLES ILIMITADA", "10% DE DESCONTO EM PRODUTOS E SERVIÇOS", "HIDRATAÇÃO DE BARBA"] }
+  { 
+    name: "PLANO DE CORTE ILIMITADO", 
+    price: "59,99", 
+    icon: <Scissors size={16} />, 
+    features: [
+      "CORTE DE CABELO ILIMITADO", 
+      "ATENDIMENTO PADRÃO SIÃO", 
+      "10% DE DESCONTO EM PRODUTOS E SERVIÇOS", 
+      "LAVAGEM INCLUSA"
+    ] 
+  },
+  { 
+    name: "PLANO DE CORTE E BARBOTERAPIA", 
+    price: "129,99", 
+    icon: <Star size={16} />, 
+    promo: "DIRETO PARA", 
+    features: [
+      "CORTES E BARBAS ILIMITADOS", 
+      "ATENDIMENTO PADRÃO SIÃO", 
+      "10% DE DESCONTO EM PRODUTOS E SERVIÇOS", 
+      "MASSAGEM FACIAL INCLUSA"
+    ], 
+    popular: true 
+  },
+  { 
+    name: "PLANO DE CORTE E BARBA SIMPLES", 
+    price: "110,99", 
+    icon: <Sparkles size={16} />, 
+    features: [
+      "CORTES ILIMITADOS", 
+      "BARBA SIMPLES ILIMITADA", 
+      "ATENDIMENTO PADRÃO SIÃO", 
+      "10% DE DESCONTO EM PRODUTOS E SERVIÇOS"
+    ] 
+  },
+  { 
+    name: "PLANO DE BARBA ILIMITADO", 
+    price: "63,00", 
+    icon: <MessageCircle size={16} />, 
+    features: [
+      "BARBA SIMPLES ILIMITADA", 
+      "ATENDIMENTO PADRÃO SIÃO", 
+      "10% DE DESCONTO EM PRODUTOS E SERVIÇOS", 
+      "HIDRATAÇÃO DE BARBA"
+    ] 
+  }
 ];
 
 const LOCATIONS = [
@@ -94,7 +145,7 @@ const LOCATIONS = [
     color: "#D4AF37", 
     address: "Galeria Caravelas, Praia do Francês", 
     phone: "(82) 99388-1114", 
-    desc: "Um ambiente pensado para quem busca o máximo de conforto com a brisa do mar.", 
+    desc: "Atendimento padrão Sião com o máximo de conforto, sofisticação e a brisa do mar.", 
     mapLink: "https://maps.app.goo.gl/k9eAMK98ZcEa4Y977" 
   },
   { 
@@ -105,7 +156,7 @@ const LOCATIONS = [
     color: "#ffffff", 
     address: "Trevo do Francês", 
     phone: "(82) 99106-6112", 
-    desc: "Ideal para quem busca qualidade premium com a agilidade que a rotina exige.", 
+    desc: "Atendimento padrão Sião com agilidade, excelência e praticidade para sua rotina.", 
     mapLink: "https://www.google.com/maps/search/?api=1&query=Barbearia+Siao+Trevo+do+Frances" 
   },
   { 
@@ -116,7 +167,7 @@ const LOCATIONS = [
     color: "#ffffff", 
     address: "Rodovia Edvaldo Lopes, em direção à Fazenda Barreiros", 
     phone: "(82) 99146-8648", 
-    desc: "Espaço moderno e sofisticado para atender toda a região de Manguaba e arredores.", 
+    desc: "Atendimento padrão Sião em um espaço moderno e sofisticado para toda a família.", 
     mapLink: "https://www.google.com/maps/search/?api=1&query=Barbearia+Siao+Manguaba+Rodovia+Edvaldo+Lopes" 
   }
 ];
@@ -162,11 +213,22 @@ const AnimatedLogo = ({ className = "h-14 w-14" }: { className?: string }) => {
   );
 };
 
-const VideoWithSoundToggle = ({ src, className, overlay }: { src: string, className?: string, overlay?: boolean }) => {
+const VideoWithSoundToggle = ({ 
+  src, 
+  className, 
+  overlay = true,
+  caption
+}: { 
+  src: string; 
+  className?: string; 
+  overlay?: boolean;
+  caption?: string;
+}) => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const toggleSound = () => {
+  const toggleSound = (e: React.MouseEvent) => {
+    e.stopPropagation();
     playArcadeClick();
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
@@ -175,7 +237,7 @@ const VideoWithSoundToggle = ({ src, className, overlay }: { src: string, classN
   };
 
   return (
-    <div className="relative w-full h-full group">
+    <div className="relative w-full h-full aspect-[9/16] overflow-hidden group bg-neutral-950">
        <video 
          ref={videoRef}
          autoPlay 
@@ -183,19 +245,28 @@ const VideoWithSoundToggle = ({ src, className, overlay }: { src: string, classN
          muted={isMuted} 
          playsInline 
          preload="auto"
-         className={`w-full h-full object-cover ${className || ''}`} 
+         className={`w-full h-full object-cover select-none ${className || ''}`} 
          referrerPolicy="no-referrer"
          src={src}
        />
+       {caption && (
+         <div className="absolute top-4 left-4 z-20 pointer-events-none">
+           <span className="bg-neutral-950/80 backdrop-blur-md border border-white/10 text-white font-black text-[10px] tracking-widest uppercase px-3 py-1.5 rounded-lg shadow-lg">
+             {caption}
+           </span>
+         </div>
+       )}
        {overlay && (
-         <button 
-           type="button"
-           onClick={toggleSound}
-           className="absolute bottom-4 right-4 z-20 bg-neutral-950/80 hover:bg-amber-500 hover:text-neutral-950 text-white p-3 rounded-full border border-white/20 backdrop-blur-md transition-all shadow-xl flex items-center justify-center cursor-pointer"
-           title={isMuted ? "Ativar som" : "Desativar som"}
-         >
-           {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-         </button>
+         <div className="absolute bottom-4 right-4 z-20">
+           <button 
+             type="button"
+             onClick={toggleSound}
+             className="bg-neutral-950/85 hover:bg-amber-500 hover:text-neutral-950 text-white p-2.5 sm:p-3 rounded-full border border-white/20 backdrop-blur-md transition-all shadow-xl flex items-center justify-center cursor-pointer group-hover:scale-105 active:scale-95"
+             title={isMuted ? "Ativar som" : "Desativar som"}
+           >
+             {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+           </button>
+         </div>
        )}
     </div>
   );
@@ -239,13 +310,14 @@ export function App() {
           </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-neutral-300">
+          <nav className="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-widest text-neutral-300">
             {[
               { name: "Início", href: "#" },
               { name: "Planos", href: "#plans" },
               { name: "Mini Game", href: "#minigame" },
-              { name: "Unidades", href: "#units" },
+              { name: "Serviços nas TVs", href: "#tv-services" },
               { name: "Serviços", href: "#services" },
+              { name: "Unidades", href: "#units" },
               { name: "Avaliações", href: "#reviews" },
               { name: "Recrutamento", href: "#work-with-us" }
             ].map((item, idx) => (
@@ -283,8 +355,9 @@ export function App() {
               { name: "Início", href: "#" },
               { name: "Planos", href: "#plans" },
               { name: "Mini Game", href: "#minigame" },
-              { name: "Unidades", href: "#units" },
+              { name: "Serviços nas TVs", href: "#tv-services" },
               { name: "Serviços", href: "#services" },
+              { name: "Unidades", href: "#units" },
               { name: "Avaliações", href: "#reviews" },
               { name: "Recrutamento", href: "#work-with-us" }
             ].map((item, idx) => (
@@ -319,8 +392,8 @@ export function App() {
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/70 to-neutral-950" />
 
         <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black tracking-[0.3em] uppercase mb-6 backdrop-blur-md">
-            <Sparkles size={14} /> EXPERIÊNCIA PREMIUM EM ALAGOAS
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-black tracking-[0.3em] uppercase mb-6 backdrop-blur-md shadow-lg shadow-amber-500/10">
+            <Sparkles size={15} /> ATENDIMENTO PADRÃO SIÃO • MARECHAL DEODORO
           </div>
 
           <h1 className="font-display font-black text-5xl sm:text-7xl md:text-8xl uppercase tracking-tight mb-6 leading-none">
@@ -328,7 +401,7 @@ export function App() {
           </h1>
 
           <p className="text-neutral-300 text-sm sm:text-base max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            Muito mais do que um corte comum. Um ritual de precisão, sofisticação e cuidado no coração de Marechal Deodoro e região.
+            Muito mais do que um corte comum. Um ritual de precisão, sofisticação e o verdadeiro atendimento padrão Sião no coração de Marechal Deodoro e região.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
@@ -341,25 +414,53 @@ export function App() {
               <Clock size={16} /> AGENDAR HORÁRIO <ArrowRight size={16} />
             </a>
             <a 
-              href="#minigame"
+              href="https://siaolego.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-xl font-black text-xs tracking-widest uppercase px-10 py-5 rounded-2xl transition-all active:scale-95 flex items-center gap-3"
             >
-              <Gamepad2 size={16} className="text-amber-500" /> JOGAR MINI GAME
+              <Gamepad2 size={16} className="text-amber-500" /> JOGAR MINI GAME (SIAOLEGO) <ArrowRight size={14} />
             </a>
           </div>
         </div>
       </section>
 
-      {/* Trio of Hero Videos */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-b border-white/10 relative z-10">
+      {/* Amenities & Highlights Strip */}
+      <div className="border-y border-white/10 bg-neutral-900/60 backdrop-blur-xl py-4 px-6 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-8 sm:gap-12 text-xs font-bold uppercase tracking-wider text-neutral-300">
+          <div className="flex items-center gap-2 text-amber-400">
+            <Sparkles size={16} /> <span>Atendimento Padrão Sião</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Coffee size={16} className="text-amber-500" /> <span>Café Exclusivo & Ambiente Confortável</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Wifi size={16} className="text-amber-500" /> <span>Wi-Fi de Alta Velocidade</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Scissors size={16} className="text-amber-500" /> <span>Profissionais Especializados</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Trio of Hero Videos in 9:16 Aspect Ratio with Lateral Controls */}
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-0 border-b border-white/10 relative z-10 bg-neutral-950">
         {[
-          "https://res.cloudinary.com/dbuiqh0ee/video/upload/v1784594163/SnapInsta.to_AQMPI7zNjCzfm0FP9y__U4GjcrKm7zTDiXZdJRRHfBstMI43LIJoDFh7dwMDz3rJpw7kMdFxlmgVddj59ABFTk9uGS8siasNyaDTZgY_rbndve.mp4",
-          "https://res.cloudinary.com/dbuiqh0ee/video/upload/v1784594160/SnapInsta.to_AQMzLMQdfx50f-x_B5LUh-ewg-2FFkQl88bRV7XK2AEf7BxCPB8Dg8_oZv4ct7-EHzQUyIWSI3sxV0LlNR_HXDIXBflKEmdsb3xb490_smeeuo.mp4",
-          "https://res.cloudinary.com/dbuiqh0ee/video/upload/v1784594160/SnapInsta.to_AQPboXncLGAwZiK0AFr6mEBOl3l6hohX5xkgwVMsD3i2OpwWX3vhPDSI2U6hx930CDNQPTjGhnreZMd1X4HymkLg8rudBEU24gZ1MKA_sn4rx7.mp4"
-        ].map((vid, idx) => (
-          <div key={idx} className="aspect-[9/16] relative overflow-hidden group">
-            <video src={vid} autoPlay loop muted playsInline preload="auto" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-60 pointer-events-none" />
+          {
+            src: "https://res.cloudinary.com/dbuiqh0ee/video/upload/v1784594163/SnapInsta.to_AQMPI7zNjCzfm0FP9y__U4GjcrKm7zTDiXZdJRRHfBstMI43LIJoDFh7dwMDz3rJpw7kMdFxlmgVddj59ABFTk9uGS8siasNyaDTZgY_rbndve.mp4",
+            title: "UNIDADE TREVO"
+          },
+          {
+            src: "https://res.cloudinary.com/dbuiqh0ee/video/upload/v1784594160/SnapInsta.to_AQMzLMQdfx50f-x_B5LUh-ewg-2FFkQl88bRV7XK2AEf7BxCPB8Dg8_oZv4ct7-EHzQUyIWSI3sxV0LlNR_HXDIXBflKEmdsb3xb490_smeeuo.mp4",
+            title: "UNIDADE CARAVELAS"
+          },
+          {
+            src: "https://res.cloudinary.com/dbuiqh0ee/video/upload/v1784594160/SnapInsta.to_AQPboXncLGAwZiK0AFr6mEBOl3l6hohX5xkgwVMsD3i2OpwWX3vhPDSI2U6hx930CDNQPTjGhnreZMd1X4HymkLg8rudBEU24gZ1MKA_sn4rx7.mp4",
+            title: "UNIDADE MANGUABA"
+          }
+        ].map((item, idx) => (
+          <div key={idx} className="aspect-[9/16] relative overflow-hidden group bg-neutral-900 border-r border-white/10 last:border-r-0">
+            <VideoWithSoundToggle src={item.src} overlay={true} caption={item.title} />
           </div>
         ))}
       </section>
@@ -431,10 +532,159 @@ export function App() {
         </div>
       </section>
 
-      {/* Mini Game Section (Placed right below Subscription Plans) */}
+
+
+      {/* Mini Game Section */}
       <div id="minigame" className="relative z-10">
         <SiaoMiniGame />
       </div>
+
+      {/* Seção de Serviços nas Televisões e Proposta de Divulgação */}
+      <section id="tv-services" className="py-32 px-6 relative z-10 bg-neutral-900/60 backdrop-blur-md border-t border-b border-white/10 overflow-hidden">
+        {/* Ambient Glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-amber-500/10 blur-[160px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-black tracking-[0.3em] uppercase mb-4 backdrop-blur-md">
+              <Tv size={14} /> PUBLICIDADE & MARKETING INDOOR
+            </div>
+            <h2 className="font-display font-black text-5xl sm:text-7xl uppercase mb-6 leading-none">
+              PROPOSTA NAS <span className="text-amber-500 italic">TELEVISÕES.</span>
+            </h2>
+            <p className="text-neutral-400 text-sm leading-relaxed">
+              Divulgue sua marca para mais de <strong className="text-white">2.000 clientes por mês</strong> em nossa rede de Smart TVs instaladas nas barbearias Sião Barber Club em Marechal Deodoro.
+            </p>
+          </div>
+
+          {/* Partnership Overview Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <div className="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-[28px] p-8 shadow-xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-6">
+                  <MapPin size={22} />
+                </div>
+                <h3 className="font-display font-bold text-lg uppercase text-white mb-3">Rede de Unidades</h3>
+                <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                  3 filiais estratégicas em Marechal Deodoro com um total de 6 TVs exibindo conteúdos diariamente:
+                </p>
+                <ul className="space-y-2 text-xs font-bold text-neutral-300 uppercase">
+                  <li className="flex items-center gap-2 text-amber-400">✓ Unidade Manguaba</li>
+                  <li className="flex items-center gap-2 text-amber-400">✓ Trevo do Francês</li>
+                  <li className="flex items-center gap-2 text-amber-400">✓ Caravelas (Praia do Francês)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-[28px] p-8 shadow-xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-6">
+                  <Users size={22} />
+                </div>
+                <h3 className="font-display font-bold text-lg uppercase text-white mb-3">Público & Alcance</h3>
+                <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                  Exposição direta para mais de <strong className="text-white">2.000 clientes por mês</strong> que assistem aos conteúdos enquanto aguardam o atendimento.
+                </p>
+                <ul className="space-y-2 text-xs font-bold text-neutral-300 uppercase">
+                  <li className="flex items-center gap-2 text-amber-400">✓ Exclusividade de nicho</li>
+                  <li className="flex items-center gap-2 text-amber-400">✓ Ambiente qualificado</li>
+                  <li className="flex items-center gap-2 text-amber-400">✓ Visualização diária garantida</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-neutral-900/80 backdrop-blur-xl border border-white/10 rounded-[28px] p-8 shadow-xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 mb-6">
+                  <Clock size={22} />
+                </div>
+                <h3 className="font-display font-bold text-lg uppercase text-white mb-3">Especificações</h3>
+                <p className="text-xs text-neutral-400 leading-relaxed mb-4">
+                  Formatos aceitos para veiculação nas telas:
+                </p>
+                <ul className="space-y-2 text-xs font-bold text-neutral-300 uppercase">
+                  <li className="flex items-center gap-2 text-amber-400">✓ Vídeo de até 35 segundos</li>
+                  <li className="flex items-center gap-2 text-amber-400">✓ Imagem estática em HD</li>
+                  <li className="flex items-center gap-2 text-amber-400">✓ Formato Vertical (9:16)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Pricing Table & WhatsApp Contact */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16 bg-neutral-900/90 backdrop-blur-2xl border border-white/10 rounded-[36px] p-8 sm:p-12 shadow-2xl">
+            <div>
+              <span className="text-amber-500 font-bold tracking-[0.3em] uppercase text-[10px] block mb-2">INVESTIMENTO MENSAL</span>
+              <h3 className="font-display font-black text-3xl uppercase text-white mb-6">PLANOS DE DIVULGAÇÃO</h3>
+              <p className="text-neutral-300 text-sm mb-6 leading-relaxed">
+                Escolha o pacote ideal para o tamanho da sua empresa e posicione sua marca em destaque para todo o público de Marechal Deodoro.
+              </p>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-neutral-950 border border-white/10">
+                  <div>
+                    <h4 className="font-bold text-sm uppercase text-white">1 Unidade</h4>
+                    <p className="text-xs text-neutral-400">Anúncio exibido em 1 filial</p>
+                  </div>
+                  <span className="font-display font-black text-xl text-amber-400">R$ 120,00 <span className="text-[10px] font-normal text-neutral-400">/mês</span></span>
+                </div>
+
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-neutral-950 border border-white/10">
+                  <div>
+                    <h4 className="font-bold text-sm uppercase text-white">2 Unidades</h4>
+                    <p className="text-xs text-neutral-400">Anúncio exibido em 2 filiais</p>
+                  </div>
+                  <span className="font-display font-black text-xl text-amber-400">R$ 180,00 <span className="text-[10px] font-normal text-neutral-400">/mês</span></span>
+                </div>
+
+                <div className="flex items-center justify-between p-4 rounded-2xl bg-neutral-950 border border-amber-500/50 shadow-lg shadow-amber-500/10">
+                  <div>
+                    <h4 className="font-bold text-sm uppercase text-white flex items-center gap-2">
+                      3 Unidades (Todas) 
+                      <span className="text-[9px] bg-amber-500 text-neutral-950 px-2 py-0.5 rounded-full font-black">MAIS POPULAR</span>
+                    </h4>
+                    <p className="text-xs text-neutral-400">Exibição máxima em toda a rede</p>
+                  </div>
+                  <span className="font-display font-black text-xl text-amber-400">R$ 200,00 <span className="text-[10px] font-normal text-neutral-400">/mês</span></span>
+                </div>
+              </div>
+
+              <a
+                href="https://wa.me/5582993651280?text=Ol%C3%A1%20Daniel,%20gostaria%20de%20saber%20mais%20sobre%20a%20proposta%20de%20divulga%C3%A7%C3%A3o%20nas%20TVs%20da%20Si%C3%A3o%20Barber%20Club!"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-amber-500 text-neutral-950 font-black text-xs tracking-widest uppercase px-8 py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-white transition-all shadow-xl shadow-amber-500/20 active:scale-95"
+              >
+                <MessageCircle size={18} /> FALAR COM DANIEL SIÃO (WHATSAPP) <ArrowRight size={16} />
+              </a>
+            </div>
+
+            {/* Featured Proposal Video in 9:16 format */}
+            <div className="relative rounded-[32px] bg-gradient-to-b from-neutral-800 to-neutral-950 p-4 border-2 border-neutral-700 shadow-2xl flex flex-col items-center">
+              <div className="w-full flex items-center justify-between px-3 py-2 mb-3 bg-neutral-900 rounded-xl text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-display font-black text-[10px] tracking-wider text-white">
+                    VÍDEO OFICIAL DE PROPOSTA • 9:16
+                  </span>
+                </div>
+                <span className="bg-amber-500 text-neutral-950 font-black text-[9px] px-2 py-0.5 rounded uppercase tracking-wider">
+                  HD
+                </span>
+              </div>
+
+              <div className="aspect-[9/16] w-full max-w-[320px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative bg-neutral-950">
+                <VideoWithSoundToggle src={PROPOSAL_TV_VIDEO} overlay={true} caption="PROPOSTA NAS TVs" />
+              </div>
+
+              <p className="text-[11px] text-neutral-400 mt-4 text-center font-medium">
+                Exibição contínua em todas as unidades da Sião Barber Club.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* Services Table Section with Glassmorphism */}
       <section id="services" className="py-32 px-6 relative z-10 bg-neutral-900/40">
@@ -592,21 +842,11 @@ export function App() {
                 className={`relative group cursor-pointer overflow-hidden rounded-3xl border-2 transition-all p-6 backdrop-blur-xl ${
                   activeUnit === i 
                     ? 'border-amber-500 bg-neutral-900/90 shadow-2xl shadow-amber-500/10' 
-                    : 'border-white/10 bg-neutral-900/50 opacity-60 hover:opacity-100'
+                    : 'border-white/10 bg-neutral-900/50 opacity-70 hover:opacity-100'
                 }`}
               >
-                <div className="aspect-[4/3] relative rounded-2xl overflow-hidden mb-4">
-                  <video 
-                    src={loc.video} 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline 
-                    preload="auto"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-neutral-950/30 pointer-events-none" />
+                <div className="aspect-[9/16] max-h-[340px] relative rounded-2xl overflow-hidden mb-4 bg-neutral-950">
+                  <VideoWithSoundToggle src={loc.video} overlay={true} caption={loc.name.split('(')[0]} />
                 </div>
                 <h3 className="font-display font-black text-base uppercase text-white mb-2">{loc.name}</h3>
                 <p className="text-xs text-neutral-400 line-clamp-2">{loc.desc}</p>
@@ -651,10 +891,10 @@ export function App() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="aspect-[9/16] sm:aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
+              <div className="aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative bg-neutral-950">
                 <VideoWithSoundToggle src={LOCATIONS[activeUnit].video} overlay={true} />
               </div>
-              <div className="aspect-[9/16] sm:aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <div className="aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-neutral-950">
                 <iframe
                   title="Google Map"
                   src={`https://maps.google.com/maps?q=${encodeURIComponent(LOCATIONS[activeUnit].address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}

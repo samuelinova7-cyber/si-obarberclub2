@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Scissors, Trophy, Play, RotateCcw, Award, Sparkles, Zap, Star } from 'lucide-react';
+import { Scissors, Trophy, Play, RotateCcw, Award, Sparkles, Zap, Star, Gamepad2, ArrowRight } from 'lucide-react';
 
 export function SiaoMiniGame() {
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'gameover' | 'won'>('idle');
@@ -168,23 +168,27 @@ export function SiaoMiniGame() {
 
           {/* Idle State */}
           {gameState === 'idle' && (
-            <div className="text-center z-10 animate-fade-in mt-10">
+            <div className="text-center z-10 animate-fade-in mt-6 max-w-lg mx-auto">
               <div className="w-20 h-20 bg-amber-500/20 border border-amber-500/40 rounded-3xl flex items-center justify-center mx-auto mb-6 text-amber-500 shadow-xl shadow-amber-500/20">
                 <Scissors size={36} />
               </div>
               <h3 className="font-display font-black text-2xl sm:text-3xl uppercase text-white mb-3">
-                PRONTO PARA O DESAFIO?
+                MINI GAME DO SIÃO
               </h3>
-              <p className="text-xs text-neutral-400 max-w-sm mx-auto mb-8">
-                Clique em itens bons (+1) e evite os tesouros falsos (-3).
+              <p className="text-xs text-neutral-400 max-w-sm mx-auto mb-8 leading-relaxed">
+                Acesse a versão completa e interativa do mini game no portal Siaolego.
               </p>
-              <button
-                type="button"
-                onClick={() => setGameState('playing')}
-                className="bg-amber-500 text-neutral-950 font-black text-xs tracking-widest uppercase px-10 py-5 rounded-2xl hover:bg-white transition-all shadow-xl shadow-amber-500/20 active:scale-95 flex items-center gap-3 mx-auto cursor-pointer"
-              >
-                <Play size={16} fill="currentColor" /> INICIAR JOGO AGORA
-              </button>
+              
+              <div className="flex items-center justify-center">
+                <a
+                  href="https://siaolego.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-amber-500 text-neutral-950 font-black text-xs tracking-widest uppercase px-10 py-5 rounded-2xl hover:bg-white transition-all shadow-xl shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-3 cursor-pointer"
+                >
+                  <Gamepad2 size={18} /> JOGAR NO SIAOLEGO.VERCEL.APP <ArrowRight size={16} />
+                </a>
+              </div>
             </div>
           )}
 
